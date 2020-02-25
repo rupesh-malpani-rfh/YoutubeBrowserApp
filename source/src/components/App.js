@@ -17,11 +17,21 @@ class App extends React.Component {
     }
 
     onTermSubmit = async (term) => {
+        // term will contain the text that user needs to search
+        // console.log(term);
+        // our api request will look like "https://www.googleapis.com/youtube/v3/search?cars"
         const response = await youtube.get('/search', {
             params:{
                 q: term
             }
         });
+        // console.log(response.data.items);
+
+        // videos: response.data.items - list of fetched videos are now in videos propery of
+        // state object
+
+        // selectedVideo: response.data.items[0] - by default first video from videos array
+        // is selected
         this.setState({
             videos: response.data.items,
             selectedVideo: response.data.items[0]
@@ -30,6 +40,14 @@ class App extends React.Component {
     };
 
     onVideoSelect = (video) => {
+        // console.log(video);
+
+        // Here, on whatever video user selects, that video is passed from "VideoItem" component
+        // From "VideoItem" component, it is then passed to "VideoList" component.
+        // From "VideoList" component, it is then passed to "App" component
+        // and that video is passed to "selectedVideo" propery of state object
+
+        // this latest video selected by user is now in prop object of "VideoDetail" component
         this.setState({
             selectedVideo: video
         });

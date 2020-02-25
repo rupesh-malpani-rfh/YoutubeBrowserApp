@@ -6,7 +6,7 @@ const VideoList = (props) => {
         return (
             <VideoItem 
                 key={video.id.videoId} 
-                onVideoSelect={props.onVideoSelect} 
+                onVideoSelect={props.onVideoSelect}
                 video={video} 
             />
         )
